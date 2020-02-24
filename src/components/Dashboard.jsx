@@ -1,25 +1,35 @@
-import React, { Component } from 'react'
-import {connect} from 'react-redux'
-import Tweet from './Tweet'
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import Tweet from './Tweet';
 
 class Dashboard extends Component {
+  toNewTweet = () => {};
 
   render() {
     return (
       <div>
         <h3 className='center'>Your timeline</h3>
+        <h3 className='center'>
+          <a onClick={this.toNewTweet}>New Tweet</a>
+        </h3>
         <ul className='dashboard-list'>
-          {this.props.tweetIds.map((id)=>(<li key={id}><Tweet id={id} /></li>))}
+          {this.props.tweetIds.map((id) => (
+            <li key={id}>
+              <Tweet id={id} />
+            </li>
+          ))}
         </ul>
       </div>
-    )
+    );
   }
 }
 
-function mapStateToProps ({tweets}) {
+function mapStateToProps({ tweets }) {
   return {
-    tweetIds: Object.keys(tweets).sort((a,b) => tweets[b].timestamp - tweets[a].timestamp)
-  }
+    tweetIds: Object.keys(tweets).sort(
+      (a, b) => tweets[b].timestamp - tweets[a].timestamp
+    )
+  };
 }
 
-export default connect(mapStateToProps)(Dashboard)
+export default connect(mapStateToProps)(Dashboard);
