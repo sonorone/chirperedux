@@ -20,7 +20,6 @@ export default function tweets(state = {}, action) {
               : state[action.id].likes.concat([action.authedUser])
         }
       };
-
     case ADD_TWEET:
       const { tweet } = action;
 
